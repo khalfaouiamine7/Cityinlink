@@ -1,0 +1,56 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+<div style="height: 200px;"> </div>
+
+    <h1>Evenement index</h1>
+
+    <!--===============================
+=            Job lists            =
+================================-->
+<section class="job-list section pt-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-10 m-auto">
+				<div class="block">
+					<div class="title text-center">
+						<h2>Events Opening</h2>
+					</div>
+
+                            {% for evenement in evenements %}
+
+					<div class="job">
+						<div class="content">
+							<!-- Job Title -->
+							<h3>{{ evenement.nom }}</h3>
+							<!-- Location -->
+							<p>{{ evenement.description }}</p>
+                            {{ evenement.dateE ? evenement.dateE|date('Y-m-d') : '' }}
+                            {{ evenement.image }}
+
+						</div>
+						<!-- Action Button -->
+						<div class="apply-button">
+							<a class="btn btn-main-sm" data-toggle="modal" href="{{ path('app_evenement_buy', {'id': evenement.id}) }}"  data-target="#android-developer">Get Ticket</a>
+						</div>
+					</div>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--====  End of Job lists  ====-->
+
+
+<div style="height: 100px;"> </div>
+{% endblock %}
+
+
+
