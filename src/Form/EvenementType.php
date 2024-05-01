@@ -37,7 +37,10 @@ class EvenementType extends AbstractType
                     new NotBlank(),
                 ],
             ])
-            ->add('image', TextType::class, [
+            ->add('image', FileType::class, [
+                'label' => 'Upload Image',
+                'mapped' => false, // Tells Symfony not to try to map this field to any entity property
+                'required' => false, // Set to true if the image is required
                 // Add constraints if needed for file uploads
             ])
             ->add('categorie', EntityType::class, [ // Change ChoiceType to EntityType

@@ -25,14 +25,34 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ evenement.image }}</td>
+                <td><img style="max-width:100px;" src="{{ asset('uploads/images/' ~ evenement.image) }}" alt="not found"></td>
+            </tr>
+                <tr>
+                <th>Action</th>
+                <td>{{ include('evenement/_delete_form.html.twig') }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_evenement_index') }}">back to list</a>
+    <style>
+        .button-container {
+            width: 100%;
+            text-align: center;
+        }
+        .button-container a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
 
-    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
-
-    {{ include('evenement/_delete_form.html.twig') }}
+   <div class="button-container">
+        <a style="margin-right:70%;" href="{{ path('app_evenement_index') }}">Back to List</a>
+        <a href="{{ path('app_pdf_generator', {'id': evenement.id}) }}">PDF</a>
+        <a style="background-color:green;" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">Edit</a>
+    </div>
 {% endblock %}

@@ -4,8 +4,10 @@
 
 {% block body %}
     <h1>Evenement index</h1>
-
-    <table class="table">
+    
+    <input class="form-control border-0" id="searchInput" type="search" placeholder="Search">
+    
+    <table class="table" id="eventTable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -13,29 +15,58 @@
                 <th>Description</th>
                 <th>DateE</th>
                 <th>Image</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.id }}</td>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.dateE ? evenement.dateE|date('Y-m-d') : '' }}</td>
-                <td>{{ evenement.image }}</td>
-                <td>
-                    <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
+          {% for evenement in evenements %}
+    <tr data-id="{{ evenement.id }}" data-nom="{{ evenement.nom }}" data-description="{{ evenement.description }}" data-date="{{ evenement.dateE ? evenement.dateE|date('Y-m-d') : '' }}" data-image="{{ evenement.image }}">
+        <td>{{ evenement.id }}</td>
+        <td>{{ evenement.nom }}</td>
+        <td>{{ evenement.description }}</td>
+        <td>{{ evenement.dateE ? evenement.dateE|date('Y-m-d') : '' }}</td>
+        <td><img style="max-width:50px;" src="{{ asset('uploads/images/') }}/{{ evenement.image }}" alt="not found"></td>
+        <td>
+            <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
+            <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="6">No records found</td>
+    </tr>
+{% endfor %}
+
         </tbody>
     </table>
 
     <a href="{{ path('app_evenement_new') }}">Create new</a>
+ 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const eventTable = document.getElementById('eventTable');
+
+    searchInput.addEventListener('input', function() {
+        const searchQuery = searchInput.value.trim();
+        const rows = eventTable.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const id = row.getAttribute('data-id');
+            const nom = row.getAttribute('data-nom');
+            const description = row.getAttribute('data-description');
+            const date = row.getAttribute('data-date');
+            const image = row.getAttribute('data-image');
+
+            // Check if any of the data matches the search query
+            if (id.includes(searchQuery) || nom.includes(searchQuery) || description.includes(searchQuery) || date.includes(searchQuery)) {
+                row.style.display = ''; // Show the row if it matches
+            } else {
+                row.style.display = 'none'; // Hide the row if it doesn't match
+            }
+        });
+    });
+});
+</script>
+
+
 {% endblock %}

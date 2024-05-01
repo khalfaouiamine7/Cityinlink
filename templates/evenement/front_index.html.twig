@@ -7,6 +7,7 @@
 
     <h1>Evenement index</h1>
 
+
     <!--===============================
 =            Job lists            =
 ================================-->
@@ -22,13 +23,15 @@
                             {% for evenement in evenements %}
 
 					<div class="job">
+					<img style="max-width:200px;" src="{{ asset('uploads/images/' ~ evenement.image) }}" alt="not found">
+					<div style="width:200px;"></div>
+
 						<div class="content">
 							<!-- Job Title -->
 							<h3>{{ evenement.nom }}</h3>
 							<!-- Location -->
 							<p>{{ evenement.description }}</p>
                             {{ evenement.dateE ? evenement.dateE|date('Y-m-d') : '' }}
-                            {{ evenement.image }}
 
 						</div>
 						<!-- Action Button -->
