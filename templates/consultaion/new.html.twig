@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Consultaion{% endblock %}
+
+{% block body %}
+    <h1>Create new Consultaion</h1>
+
+    <!-- Include the ReCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- Render the form -->
+    {{ include('consultaion/_form.html.twig') }}
+
+    <!-- Add the ReCAPTCHA widget -->
+    <div class="g-recaptcha" data-sitekey="6LdgqIgpAAAAAD7HQvSgIRZJwhqwUH-MkbgBtMww"></div>
+    <br/>
+
+    <!-- Replace the link with a button -->
+    <form action="{{ path('app_consultaion_index') }}">
+        <button type="submit">Back to List</button>
+    </form>
+{% endblock %}

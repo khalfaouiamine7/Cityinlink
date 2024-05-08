@@ -1,0 +1,15 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Edit Specialite{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4 mb-3">Edit Specialite</h1>
+            {{ include('specialite/_form.html.twig', {'button_label': 'Update'}) }}
+            <a href="{{ path('app_specialite_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

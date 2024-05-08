@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Small Apps | Bootstrap App Landing Template</title>
+
+    <!-- Mobile Specific Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bootstrap App Landing Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Themefisher">
+    <meta name="generator" content=" Cityinlink">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+    {% block stylesheets %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/images/favicon.png') }}" />
+
+    <!-- CSS PLUGINS CSS STYLE -->
+    <link rel="stylesheet" href="{{ asset('front/plugins/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/plugins/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/plugins/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/plugins/slick/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/plugins/fancybox/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/plugins/aos/aos.css') }}">
+
+    <!-- CUSTOM CSS -->
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+
+    {% endblock %}
+</head>
+<body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0 bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="ti-menu"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item @@home">
+                    <a class="nav-link" href="{{ path('app_home') }}">Home</a>
+                </li>
+                <li class="nav-item @@consultation">
+                    <a class="nav-link" href="{{ path('app_consultaion_index') }}">Consultation</a>
+                </li>
+                <li class="nav-item @@about">
+                    <a class="nav-link" href="{{ path('app_calend') }}">calendrier </a>
+                </li>
+                <li class="nav-item @@contact">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+
+<footer>
+    <div class="footer-main">
+        <div class="container">
+            <!-- Footer content goes here -->
+        </div>
+    </div>
+    <div class="text-center bg-dark py-4">
+        <small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>.
+            Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></small>
+    </div>
+
+    <div class="text-center bg-dark py-1">
+        <small>Distributed By <a href="https://themewagon.com/">Themewagon</a></small>
+    </div>
+</footer>
+
+<!-- To Top -->
+<div class="scroll-top-to">
+    <i class="ti-angle-up"></i>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" integrity="sha256-i4vDW9EgtaJmeauDDymtNF2omPZ1fCKpf4w1gBlU1IE=" crossorigin="anonymous"></script>
+{% block javascripts %}
+<!-- JAVASCRIPTS -->
+<script src="{{asset('front/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('front/plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{asset('front/plugins/slick/slick.min.js')}}"></script>
+<script src="{{asset('front/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
+<script src="{{asset('front/plugins/syotimer/jquery.syotimer.min.js')}}"></script>
+<script src="{{asset('front/plugins/aos/aos.js')}}"></script>
+<!-- google map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+<script src="{{asset('front/plugins/google-map/gmap.js')}}"></script>
+
+<script src="{{asset('front/js/script.js')}}"></script>
+{% endblock %}
+</body>
+</html>
