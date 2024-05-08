@@ -1,0 +1,70 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Specialite index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-4 mb-3">Specialite</h1>
+    
+    <form action="{{ path('app_specialite_index') }}" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Rechercher par nom" name="search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+            </div>
+        </div>
+    </form>
+    
+    <form action="{{ path('app_sort') }}" method="GET" style="display: inline;">
+        <input type="hidden" name="criteria" value="nom">
+        <input type="hidden" name="direction" value="asc">
+        <button type="submit" class="btn btn-primary mr-2">Trier par nom (ASC)</button>
+    </form>
+    
+    <form action="{{ path('app_sort') }}" method="GET" style="display: inline;">
+        <input type="hidden" name="criteria" value="nom">
+        <input type="hidden" name="direction" value="desc">
+        <button type="submit" class="btn btn-primary">Trier par nom (DESC)</button>
+    </form>
+    
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for specialite in specialites %}
+                    <tr>
+                        <td>{{ specialite.id }}</td>
+                        <td>{{ specialite.nom }}</td>
+                        <td>{{ specialite.description }}</td>
+                        <td>{{ specialite.type }}</td>
+                        <td>
+                            <a href="{{ path('app_specialite_show', {'id': specialite.id}) }}" class="btn btn-primary">Show</a>
+                            <a href="{{ path('app_specialite_edit', {'id': specialite.id}) }}" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">No records found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <a href="{{ path('app_specialite_new') }}" class="btn btn-success">Create New</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

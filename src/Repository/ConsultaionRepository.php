@@ -20,6 +20,15 @@ class ConsultaionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Consultaion::class);
     }
+    public function findBySearchTerm($searchTerm)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.adresse LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    
 
 //    /**
 //     * @return Consultaion[] Returns an array of Consultaion objects

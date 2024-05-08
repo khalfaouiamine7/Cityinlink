@@ -3,11 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\SpecialiteRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SpecialiteRepository::class)]
-#[ORM\Table(name: "specialite")]
-
 class Specialite
 {
     #[ORM\Id]
@@ -24,47 +23,50 @@ class Specialite
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    public function getId(): ?int
+       public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-    public function __toString(): string
-    {
-        return $this->nom ?? ''; // Return the 'nom' property as a string, or an empty string if it's null
-    }
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
+       public function getNom(): ?string
+       {
+           return $this->nom;
+       }
 
-        return $this;
-    }
+       public function setNom(string $nom): static
+       {
+           $this->nom = $nom;
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
+           return $this;
+       }
 
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
+       public function getDescription(): ?string
+       {
+           return $this->description;
+       }
 
-        return $this;
-    }
+       public function setDescription(string $description): static
+       {
+           $this->description = $description;
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
+           return $this;
+       }
 
-    public function setType(string $type): static
-    {
-        $this->type = $type;
+       public function getType(): ?string
+       {
+           return $this->type;
+       }
 
-        return $this;
-    }
+       public function setType(string $type): static
+       {
+           $this->type = $type;
+
+           return $this;
+       }
+
+       public function __toString()
+       {
+           return $this->getNom(); // Assuming Specialite has a property called 'name'
+       }
+       
 }

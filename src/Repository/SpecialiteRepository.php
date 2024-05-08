@@ -20,7 +20,15 @@ class SpecialiteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Specialite::class);
     }
-    
+    public function findByNom(string $nom): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Specialite[] Returns an array of Specialite objects
 //     */

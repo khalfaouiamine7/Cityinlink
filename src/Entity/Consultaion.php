@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\Specialite;
+
 use App\Repository\ConsultaionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ConsultaionRepository::class)]
-#[ORM\Table(name: "consultaion")]
-
 class Consultaion
 {
     #[ORM\Id]
@@ -16,12 +14,8 @@ class Consultaion
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 250)]
+    #[ORM\Column(length: 255)]
     private ?string $adresse = null;
-
-    #[ORM\ManyToOne(targetEntity: Specialite::class)]
-    #[ORM\JoinColumn(name: "specialite", referencedColumnName: "id")]
-    private ?Specialite $specialite = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -29,21 +23,13 @@ class Consultaion
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heure = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $specialite = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
-    public function getSpecialite(): ?Specialite
-    {
-        return $this->specialite;
-    }
-    public function setSpecialite($specialite): self
-{
-    $this->specialite = $specialite;
-
-    return $this;
-}
-
 
     public function getAdresse(): ?string
     {
@@ -77,6 +63,18 @@ class Consultaion
     public function setHeure(\DateTimeInterface $heure): static
     {
         $this->heure = $heure;
+
+        return $this;
+    }
+
+    public function getSpecialite(): ?string
+    {
+        return $this->specialite;
+    }
+
+    public function setSpecialite(string $specialite): static
+    {
+        $this->specialite = $specialite;
 
         return $this;
     }

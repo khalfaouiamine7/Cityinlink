@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultaion index{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h1>Consultaion </h1>
+    <form action="{{ path('app_consultaion_index') }}" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Rechercher par nom" name="search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+            </div>
+        </div>
+    </form>
+    
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Adresse</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Specialite</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consultaion in consultaions %}
+                        <tr>
+                            <td>{{ consultaion.id }}</td>
+                            <td>{{ consultaion.adresse }}</td>
+                            <td>{{ consultaion.date ? consultaion.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ consultaion.heure ? consultaion.heure|date('H:i:s') : '' }}</td>
+                            <td>{{ consultaion.specialite }}</td>
+                            <td>
+                                <a href="{{ path('app_consultaion_show', {'id': consultaion.id}) }}" class="btn btn-sm btn-primary">Show</a>
+                                <a href="{{ path('app_consultaion_edit', {'id': consultaion.id}) }}" class="btn btn-sm btn-secondary">Edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <button class="btn btn-primary" onclick="window.location.href='{{ path('app_consultaion_new') }}'">Create new</button>
+    </div>
+{% endblock %}
