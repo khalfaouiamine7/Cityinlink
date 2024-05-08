@@ -1,0 +1,50 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Medicament {% endblock %}
+
+{% block body %}
+<h1>Medicament </h1>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+<script>
+var xValues = ["Total Medicaments", "Paracetamol", "Antibiotique", "Anti-inflammatoire"];
+var yValues = [
+    {{ total_medicaments }}, 
+    {{ count_paracetamol }}, 
+    {{ count_antibiotique }}, 
+    {{ count_anti_inflammatoire }}
+];
+var barColors = [
+    "#4B0082",
+    "#FFA500",
+    "#00FF00",
+    "#FF0000"
+];
+
+new Chart("myChart", {
+    type: "pie",
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: "Medicament Type Distribution"
+        }
+    }
+});
+</script>
+
+<p>Total Medicaments: {{ total_medicaments }}</p>
+<p>Paracetamol: {{ count_paracetamol }}</p>
+<p>Antibiotique: {{ count_antibiotique }}</p>
+<p>Anti-inflammatoire: {{ count_anti_inflammatoire }}</p>
+{# Formulaire de recherche ajouté #}
+
+
+
+{% endblock %}

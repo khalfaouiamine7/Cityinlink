@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Créer un nouveau Médicament</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.prix) }}
+                        {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.prix) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.type) }}
+                        {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.type) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.idPharmacie) }}
+                        {{ form_widget(form.idPharmacie, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.idPharmacie) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_medicament_index') }}" class="btn btn-link">Retour à la liste</a>
+</div>
+{% endblock %}
