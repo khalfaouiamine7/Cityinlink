@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ button_label|default('Save') }}</div>
+
+                <div class="card-body">
+                    {{ form_start(form) }}
+
+                    <div class="form-group row">
+                        <label for="nom" class="col-md-4 col-form-label text-md-right">Nom:</label>
+                        <div class="col-md-6">
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="col-md-4 col-form-label text-md-right">Description:</label>
+                        <div class="col-md-6">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="type" class="col-md-4 col-form-label text-md-right">Type:</label>
+                        <div class="col-md-6">
+                            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ button_label|default('Save') }}
+                            </button>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
